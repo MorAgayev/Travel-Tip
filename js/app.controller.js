@@ -19,7 +19,6 @@ function onInit() {
 }
 
 function getPosition() {
-    console.log('Getting Pos');
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
@@ -31,15 +30,16 @@ function onAddMarker(pos) {
 
 function onGetLocs() {
     locService.getLocs()
-        .then(locs => {
-            // console.log('Locations:', locs)
-            renderLocs(locs);
-        })
+        .then(renderLocs)
 }
 
-function renderLocs(locs) {
-    console.log(locs);
+function renderLocs() {
+
+    const locs = locService.loadFromStorage('locationsDB');
+    if (!locs) return;
+
     const strHTML = locs.map(loc => {
+        onAddMarker({ lat: loc.lat, lng: loc.lng });
         return `<li onclick="onPanTo(${loc.lat}, ${loc.lng})">
         <div>
         <h5>${loc.name}</h5>

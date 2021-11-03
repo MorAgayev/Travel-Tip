@@ -1,13 +1,13 @@
-// import { storage } from './services/storage.service.js'
 
 export const locService = {
     getLocs,
-    updateLocs, 
-    removeLoc
+    updateLocs,
+    removeLoc,
+    loadFromStorage
 }
 
 const locs = [];
-var gId = 0; 
+var gId = 0;
 
 function getLocs() {
     return new Promise((resolve, reject) => {
@@ -34,13 +34,13 @@ function updateLocs(locationProp) {
 function removeLoc(id) {
     const idx = locs.findIndex(loc => loc.id === id);
     locs.splice(idx, 1);
-    saveToStorage('locationsDB', locs)
+    saveToStorage('locationsDB', locs);
 }
 
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val));
 }
-  
+
 function loadFromStorage(key) {
     var val = localStorage.getItem(key);
     return JSON.parse(val);
