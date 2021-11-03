@@ -102,9 +102,12 @@ main {
     align-items: center;
 }
 
-/* ul :first-child { 
-    border-top: 0.5px solid rgb(170, 168, 168);
-} */
+ul {
+    height: 350px;
+    overflow-y: scroll;
+    scrollbar-color: green;
+}
+
 li {
     cursor: pointer;
     display: flex;
