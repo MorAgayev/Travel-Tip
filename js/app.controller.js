@@ -11,7 +11,7 @@ window.onSearch = onSearch;
 function onInit() {
     mapService.initMap()
         .then(() => {
-            // console.log('Map is ready');
+            onGetLoc(mapService.getMap());
         })
         .catch(() => console.log('Error: cannot init map'));
     onGetLocs();
@@ -25,9 +25,10 @@ function getPosition() {
     })
 }
 
-function onAddMarker() {
+function onAddMarker(pos) {
     console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    // mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    mapService.addMarker(pos);
 }
 
 function onGetLocs() {
@@ -60,12 +61,12 @@ function onGetUserPos() {
         })
 }
 
-function onPanTo() {
+function onPanTo(lat, lng) {
     //getLocs(id)
     // .then(location => {len , lng} = location)
     // .then(mapService.panTo)
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+    mapService.panTo(lat, lng);
 }
 
 function onSearch() {
@@ -73,4 +74,13 @@ function onSearch() {
     mapService.searchLoc(locName);
 }
 
-//lat lng = data.results[0].geometry.location
+function onGetLoc(map) {
+    map.addListener("click", (mapsMouseEvent) => {
+        const coords = mapsMouseEvent.latLng;
+        const lat = coords.lat();
+        const lng = coords.lng();
+        onAddMarker({ lat, lng });
+        onPanTo(lat, lng)
+        // addLoc(lat, lng);
+    });
+}
