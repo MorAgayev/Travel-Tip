@@ -17,7 +17,6 @@ function onInit() {
     onGetLocs();
 }
 
-// This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
     console.log('Getting Pos');
     return new Promise((resolve, reject) => {
@@ -26,22 +25,21 @@ function getPosition() {
 }
 
 function onAddMarker(pos) {
-    console.log('Adding a marker');
-    // mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
     mapService.addMarker(pos);
 }
 
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
-            console.log('Locations:', locs)
+            // console.log('Locations:', locs)
             renderLocs(locs);
         })
 }
 
 function renderLocs(locs) {
     const strHTML = locs.map(loc => {
-        return `<li>
+        console.log('render', loc);
+        return `<li onclick="onPanTo(${loc.lat}, ${loc.lng})">
                    <h5>${loc.name}</h5>
                    <p>${loc.createdAt}</p>
                </li>`;
@@ -62,10 +60,6 @@ function onGetUserPos() {
 }
 
 function onPanTo(lat, lng) {
-    //getLocs(id)
-    // .then(location => {len , lng} = location)
-    // .then(mapService.panTo)
-    console.log('Panning the Map');
     mapService.panTo(lat, lng);
 }
 
@@ -81,6 +75,8 @@ function onGetLoc(map) {
         const lng = coords.lng();
         onAddMarker({ lat, lng });
         onPanTo(lat, lng)
-        // addLoc(lat, lng);
+        mapService.getLocAddress(lat, lng)
+        .then(locService.updateLocs)
+        onGetLocs()
     });
 }
