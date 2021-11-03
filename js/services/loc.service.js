@@ -24,8 +24,8 @@ function updateLocs(locationProp) {
         lat: locationProp.loc.lat,
         lng: locationProp.loc.lng,
         weather: 22,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
+        createdAt: _getFormattedTime(Date.now()),
+        updatedAt: _getFormattedTime(Date.now())
     }
     locs.push(loc);
     saveToStorage('locationsDB', locs)
@@ -44,4 +44,10 @@ function saveToStorage(key, val) {
 function loadFromStorage(key) {
     var val = localStorage.getItem(key);
     return JSON.parse(val);
+}
+
+function _getFormattedTime(ts) {
+    var d = new Date(ts);
+    var dateStr = `${d.getDate()}.${(d.getMonth() + 1)}.${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+    return dateStr;
 }
