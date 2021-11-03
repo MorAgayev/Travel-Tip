@@ -1,3 +1,4 @@
+
 export const mapService = {
     initMap,
     addMarker,
@@ -65,3 +66,4 @@ function getLocAddress(lat, lng) {
     `)
         .then(res => res.data.results[0])
 }
+

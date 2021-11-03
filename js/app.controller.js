@@ -7,6 +7,7 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onSearch = onSearch;
+window.onRemoveLoc = onRemoveLoc;
 
 function onInit() {
     mapService.initMap()
@@ -37,11 +38,12 @@ function onGetLocs() {
 }
 
 function renderLocs(locs) {
+    console.log(locs);
     const strHTML = locs.map(loc => {
-        console.log('render', loc);
         return `<li onclick="onPanTo(${loc.lat}, ${loc.lng})">
-                   <h5>${loc.name}</h5>
-                   <p>${loc.createdAt}</p>
+                    <button onclick="onRemoveLoc(${loc.id})">X</button>
+                    <h5>${loc.name}</h5>
+                    <p>${loc.createdAt}</p>
                </li>`;
     })
     document.querySelector('.locs').innerHTML = strHTML.join('');
@@ -82,4 +84,10 @@ function onGetLoc(map) {
             .then(locService.updateLocs)
         onGetLocs();
     });
+}
+
+function onRemoveLoc(id) {
+    console.log(id);
+    locService.removeLoc(id)
+    onGetLocs();
 }
