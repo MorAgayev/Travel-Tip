@@ -55,3 +55,8 @@ function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
 }
+
+function onAddLoc() {
+    const locName = document.querySelector('.search-loc').value;
+    addLoc(locName);
+}
