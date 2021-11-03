@@ -3,7 +3,7 @@ export const mapService = {
     addMarker,
     panTo,
     searchLoc,
-    getMap, 
+    getMap,
     getLocAddress
 }
 
@@ -37,6 +37,7 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     console.log('pan', lat, lng);
     var laLatLng = new google.maps.LatLng(lat, lng);
+    gMap.zoom = 15;
     gMap.panTo(laLatLng);
 }
 
@@ -54,7 +55,7 @@ function _connectGoogleApi() {
 }
 
 function searchLoc(searchVal) {
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchVal}&key=${API_KEY}`)
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchVal}&key=${API_KEY}`)
         .then(res => res.data.results[0].geometry.location)
         .then(panTo)
 }
@@ -62,15 +63,5 @@ function searchLoc(searchVal) {
 function getLocAddress(lat, lng) {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}
     `)
-    .then(res => res.data.results[0])
-    .then(_getData)
-    // console.log(prm);
-}
-
-function _getData(prm) {
-    var res =  {
-        address: prm.formatted_address,
-        location: prm.geometry.location
-    }
-    console.log('loc ', res.location);
+        .then(res => res.data.results[0])
 }

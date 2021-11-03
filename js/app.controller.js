@@ -76,7 +76,10 @@ function onGetLoc(map) {
         onAddMarker({ lat, lng });
         onPanTo(lat, lng)
         mapService.getLocAddress(lat, lng)
-        .then(locService.updateLocs)
-        onGetLocs()
+            .then(res => {
+                return { loc: res.geometry.location, address: res.formatted_address }
+            })
+            .then(locService.updateLocs)
+        onGetLocs();
     });
 }

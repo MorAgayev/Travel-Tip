@@ -1,5 +1,5 @@
 export const locService = {
-    getLocs, 
+    getLocs,
     updateLocs
 }
 
@@ -13,18 +13,16 @@ function getLocs() {
     });
 }
 
-function updateLocs(name, location) {
-    console.log(location);
+function updateLocs(locationProp) {
     const loc = {
         id: locs.length,
-        name,
-        lat: location.lat, 
-        lng: location.lng, 
-        weather: 22, 
-        createdAt: Date.now(), 
-        updatedAt: Date.now() 
+        name: locationProp.address,
+        lat: locationProp.loc.lat,
+        lng: locationProp.loc.lng,
+        weather: 22,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
     }
     locs.push(loc)
-    console.log(loc);
 }
 
