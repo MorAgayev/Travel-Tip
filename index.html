@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <title>TravelTip</title>
 </head>
+
 <body>
     <header class="main-layout">
         <div class="logo">
@@ -14,8 +16,8 @@
         </div>
     </header>
     <section class="search main-layout">
-        <input type="text" name="search-loc" placeholder="Search location">
-        <button>Search</button>
+        <input type="text" class="search-loc" placeholder="Search location">
+        <button onclick="onSearch()">Search</button>
     </section>
     <main class="main-layout">
         <section class="map-container">
@@ -34,14 +36,15 @@
             <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
             <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
             <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-            <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+            <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button>
         </section>
     </main>
 
     <!-- <p>You are at: <span class="user-pos"></span></p>
     <p>Locations: <span class="locs"></span></p> -->
-    
 
+    <script src="lib/axios.min.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
+
 </html>

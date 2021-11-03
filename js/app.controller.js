@@ -6,11 +6,12 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onSearch = onSearch;
 
 function onInit() {
     mapService.initMap()
         .then(() => {
-            console.log('Map is ready');
+            // console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
 }
@@ -55,7 +56,7 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917);
 }
 
-function onAddLoc() {
+function onSearch() {
     const locName = document.querySelector('.search-loc').value;
-    addLoc(locName);
+    mapService.searchLoc(locName);
 }

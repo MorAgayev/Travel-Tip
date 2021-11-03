@@ -3,22 +3,23 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo, 
+    searchLoc
 }
 
 var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
+    // console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available');
+            // console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
-            console.log('Map!', gMap);
+            // console.log('Map!', gMap);
         })
 }
 
@@ -48,4 +49,10 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function searchLoc(searchVal) {
+    const prm  = axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchVal}&key=AIzaSyAwGiZvHMgXknOgVGzfiqUHedPY-M9aRpM`)
+    .then(res => res.data.results[0].geometry.location)
+    .then(panTo)
 }
