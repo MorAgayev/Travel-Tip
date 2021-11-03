@@ -36,6 +36,10 @@ button {
     font-size: 0.9rem;
 }
 
+li {
+    list-style: none;
+}
+
 /* header */
 header {
     padding: 30px 15px 10px;
