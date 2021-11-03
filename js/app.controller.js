@@ -41,9 +41,11 @@ function renderLocs(locs) {
     console.log(locs);
     const strHTML = locs.map(loc => {
         return `<li onclick="onPanTo(${loc.lat}, ${loc.lng})">
-                    <button onclick="onRemoveLoc(${loc.id})">X</button>
-                    <h5>${loc.name}</h5>
-                    <p>${loc.createdAt}</p>
+        <div>
+        <h5>${loc.name}</h5>
+        <p>${loc.createdAt}</p>
+        </div>
+        <button onclick="onRemoveLoc(${loc.id})">X</button>
                </li>`;
     })
     document.querySelector('.locs').innerHTML = strHTML.join('');

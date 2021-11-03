@@ -87,7 +87,7 @@ header {
 /* MAIN CONTAINER */
 main {
     display: grid;
-    grid-template-columns: 3fr 1fr auto;
+    grid-template-columns: 3fr 1fr;
     gap: 20px;
 }
 /* map-container */
@@ -96,9 +96,45 @@ main {
 }
 
 /* list-locs */
+.locs-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* ul :first-child { 
+    border-top: 0.5px solid rgb(170, 168, 168);
+} */
+li {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-bottom: 0.5px solid rgb(170, 168, 168);
+    padding: 10px;
+    transition: all 0.5s;
+}
+
+li:hover {
+    background-color: rgb(235, 232, 232);
+}
+
+li:active {
+    background-color: rgb(243, 240, 240);
+}
+
+li button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+    width: 30px;
+    height: 30px;
+}
+li div h5 {
+    margin: 0;
+}
 /* btns */
-.btns {
+/* .btns {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -115,4 +151,16 @@ main {
 
 .btns > *:hover {
    background-color: rgb(231, 230, 230);
+} */
+
+@media (max-width:720px) {
+    .main-layout {
+       margin-left: 20px;
+       margin-right: 20px;
+    }
+
+    main {
+        grid-template-columns: auto;
+        grid-template-rows: repeat(2, auto);
+    }
 }

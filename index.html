@@ -18,6 +18,7 @@
     <section class="search main-layout">
         <input type="text" class="search-loc" placeholder="Search location">
         <button onclick="onSearch()">Search</button>
+        <button onclick="onGetUserPos()" class="btn-user-pos">My location</button>
     </section>
     <main class="main-layout">
         <section class="map-container">
@@ -27,12 +28,7 @@
             <h3>Saves Locaions:</h3>
             <ul class="locs"></ul>
         </section>
-        <section class="btns">
-            <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-            <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-            <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-            <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button>
-        </section>
+        
     </main>
 
     <script src="lib/axios.min.js"></script>
