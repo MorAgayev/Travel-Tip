@@ -60,3 +60,5 @@ function onSearch() {
     const locName = document.querySelector('.search-loc').value;
     mapService.searchLoc(locName);
 }
+
+//lat lng = data.results[0].geometry.location
