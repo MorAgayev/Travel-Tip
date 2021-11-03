@@ -48,7 +48,7 @@ function onGetUserPos() {
 }
 
 function onPanTo() {
-    //getLocs(id)!!
+    //getLocs(id)
     // .then(location => {len , lng} = location)
     // .then(mapService.panTo)
     console.log('Panning the Map');
